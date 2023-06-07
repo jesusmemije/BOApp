@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="details_product">Detalles del producto</string>
+    <string name="details">Detalles</string>
+    <string name="product">Producto</string>
+    <string name="price">Precio</string>
+    <string name="my_products">Mis productos</string>
+    <string name="add_product">Agregar producto</string>
+    <string name="new_product">Nuevo producto</string>
+
+</resources>

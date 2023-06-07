@@ -1,0 +1,55 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Size -->
+    <dimen name="size_254dp">254dp</dimen>
+    <dimen name="size_70dp">70dp</dimen>
+    <dimen name="size_66dp">66dp</dimen>
+    <dimen name="size_60dp">60dp</dimen>
+    <dimen name="size_56dp">56dp</dimen>
+    <dimen name="size_52dp">52dp</dimen>
+    <dimen name="size_48dp">48dp</dimen>
+    <dimen name="size_38dp">38dp</dimen>
+    <dimen name="size_40dp">40dp</dimen>
+    <dimen name="size_32dp">32dp</dimen>
+    <dimen name="size_30dp">30dp</dimen>
+    <dimen name="size_28dp">28dp</dimen>
+    <dimen name="size_26dp">26dp</dimen>
+    <dimen name="size_24dp">24dp</dimen>
+    <dimen name="size_22dp">22dp</dimen>
+    <dimen name="size_20dp">20dp</dimen>
+    <dimen name="size_18dp">18dp</dimen>
+    <dimen name="size_16dp">16dp</dimen>
+    <dimen name="size_14dp">14dp</dimen>
+    <dimen name="size_12dp">12dp</dimen>
+    <dimen name="size_10dp">10dp</dimen>
+    <dimen name="size_8dp">8dp</dimen>
+    <dimen name="size_6dp">6dp</dimen>
+    <dimen name="size_5dp">5dp</dimen>
+    <dimen name="size_4dp">4dp</dimen>
+    <dimen name="size_2dp">2dp</dimen>
+
+    <!-- Requirements Console Play -->
+    <dimen name="size_push_google">48dp</dimen>
+    <dimen name="size_icon_padding">12dp</dimen>
+    <dimen name="size_btn_return_margin">4dp</dimen>
+
+    <!--Text-->
+    <dimen name="size_34sp">34sp</dimen>
+    <dimen name="size_20sp">20sp</dimen>
+    <dimen name="size_24sp">24sp</dimen>
+    <dimen name="size_16sp">16sp</dimen>
+    <dimen name="size_14sp">14sp</dimen>
+    <dimen name="size_12sp">12sp</dimen>
+    <dimen name="size_corner_button">6dp</dimen>
+
+    <dimen name="size_18sp">18sp</dimen>
+    <dimen name="size_15sp">15sp</dimen>
+    <dimen name="size_minus_10_toolbar">-10dp</dimen>
+    <dimen name="size_42dp">42dp</dimen>
+    <dimen name="size_46dp">46dp</dimen>
+    <dimen name="size_64dp">64dp</dimen>
+    <dimen name="size_25dp">25dp</dimen>
+</resources>

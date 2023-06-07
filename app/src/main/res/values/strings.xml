@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BOApp</string>
+    <string name="title_home">Home</string>
+    <string name="title_products">Productos</string>
+    <string name="title_customers">Clientes</string>
+    <string name="add">Agregar</string>
+    <string name="name">Nombre</string>
+    <string name="description">Descripción</string>
+    <string name="todo">todo</string>
+    <string name="format_coin">$%,.0f</string>
+</resources>

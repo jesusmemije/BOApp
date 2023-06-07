@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="@dimen/size_8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+        android:id="@+id/btnReturn"
+        android:layout_width="@dimen/size_18dp"
+        android:layout_height="@dimen/size_18dp"
+        android:layout_marginEnd="@dimen/size_16dp"
+        android:contentDescription="@string/todo"
+        android:saveEnabled="true"
+        app:srcCompat="@drawable/ic_arrow_back"
+        app:tint="@color/gris_obscuro" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textColor="@color/gris_obscuro"
+        android:textSize="@dimen/size_18sp"
+        android:textStyle="bold"
+        tools:text="Pantalla" />
+
+</androidx.appcompat.widget.Toolbar>
