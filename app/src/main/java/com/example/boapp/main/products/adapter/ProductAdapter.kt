@@ -33,17 +33,18 @@ class ProductAdapter(
     }
 
     inner class ProductAdapterHolder(private val binding: ItemProductBinding) :
-        RecyclerView.ViewHolder(binding.root), ClickListenerProduct {
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProductEntity, position: Int) {
             binding.apply {
                 tvName.text = item.name
                 tvPrice.text = item.price.toFormatCoinMXN()
                 tvDescription.text = item.description.ifEmpty { "Sin descripción" }
+                if (clickListener != null) {
+                    ivDelete.setOnClickListener {
+                        clickListener?.onItemClick(item)
+                    }
+                }
             }
-        }
-
-        override fun onItemClick(item: ProductEntity) {
-            clickListener?.onItemClick(item)
         }
     }
 }

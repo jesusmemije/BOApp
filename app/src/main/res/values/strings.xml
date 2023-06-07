@@ -5,7 +5,7 @@
     <string name="title_customers">Clientes</string>
     <string name="add">Agregar</string>
     <string name="name">Nombre</string>
-    <string name="description">Descripción</string>
+    <string name="description">Descripción (opcional)</string>
     <string name="todo">todo</string>
     <string name="format_coin">$%,.0f</string>
 </resources>

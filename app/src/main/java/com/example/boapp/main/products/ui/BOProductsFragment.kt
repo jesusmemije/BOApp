@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boapp.R
@@ -56,21 +57,22 @@ class BOProductsFragment : BOFragmentBase() {
     }
 
     private fun initObserves() {
-        viewModelProduct.productModel.observe(viewLifecycleOwner) { productList ->
-            if (!productList.isNullOrEmpty()) {
-                val productAdapter = ProductAdapter(productList)
-                binding.rvProducts.adapter = productAdapter
-                binding.rvProducts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                productAdapter.setOnItemClickListener(object : ClickListenerProduct {
-                    override fun onItemClick(item: ProductEntity) {
-                        item.toString().log()
-                    }
-                })
-            } else {
-                Toast(safeActivity).showToastInfo(
-                    "No se encontraron productos registrados", safeActivity
-                )
-            }
+        viewModelProduct.productModel.observe(viewLifecycleOwner, handleProducts())
+    }
+
+    private fun handleProducts(): (List<ProductEntity>?) -> Unit = { productList ->
+        if (!productList.isNullOrEmpty()) {
+            val productAdapter = ProductAdapter(productList)
+            binding.rvProducts.adapter = productAdapter
+            binding.rvProducts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            productAdapter.setOnItemClickListener(object : ClickListenerProduct {
+                override fun onItemClick(item: ProductEntity) {
+                    viewModelProduct.deleteProduct(item)
+                    viewModelProduct.getProducts()
+                }
+            })
+        } else {
+            Toast(safeActivity).showToastInfo("No se encontraron productos registrados", safeActivity)
         }
     }
 
