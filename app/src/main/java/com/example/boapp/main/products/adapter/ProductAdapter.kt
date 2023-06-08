@@ -29,13 +29,14 @@ class ProductAdapter(
     override fun getItemCount(): Int = productList.size
 
     override fun onBindViewHolder(holder: ProductAdapterHolder, position: Int) {
-        holder.bind(productList[position], position)
+        holder.bind(productList[position])
     }
 
     inner class ProductAdapterHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ProductEntity, position: Int) {
+        fun bind(item: ProductEntity) {
             binding.apply {
+                tvLetter.text = item.name[0].toString()
                 tvName.text = item.name
                 tvPrice.text = item.price.toFormatCoinMXN()
                 tvDescription.text = item.description.ifEmpty { "Sin descripción" }

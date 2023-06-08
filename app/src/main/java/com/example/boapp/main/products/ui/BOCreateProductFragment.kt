@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.boapp.R
@@ -72,18 +73,20 @@ class BOCreateProductFragment : BOFragmentBase() {
     }
 
     private fun initObserves() {
-        viewModelProduct.launchSuccess.observe(viewLifecycleOwner, handleLaunchSuccess())
-        viewModelProduct.launchError.observe(viewLifecycleOwner, handleLaunchError())
+        viewModelProduct.productInserted.observe(viewLifecycleOwner, handleInserted())
+        viewModelProduct.isLoading.observe(viewLifecycleOwner) { ok ->
+            binding.loader.contentLoading.isVisible = ok
+        }
     }
 
-    private fun handleLaunchSuccess(): (String) -> Unit = { response ->
-        binding.etName.setText("")
-        binding.etPrice.setText("")
-        binding.etDescription.setText("")
-        Toast(safeActivity).showToastSuccess(response, safeActivity)
-    }
-
-    private fun handleLaunchError(): (String) -> Unit = { response ->
-        Toast(safeActivity).showToastFailed(response, safeActivity)
+    private fun handleInserted(): (Boolean) -> Unit = { response ->
+        if (response) {
+            binding.etName.setText("")
+            binding.etPrice.setText("")
+            binding.etDescription.setText("")
+            Toast(safeActivity).showToastSuccess("El producto se ha registrado con éxito.", safeActivity)
+        } else {
+            Toast(safeActivity).showToastFailed("Error al registrar producto, intente nuevamente.", safeActivity)
+        }
     }
 }

@@ -5,44 +5,56 @@
     android:layout_height="match_parent"
     tools:context=".main.products.ui.BOProductsFragment">
 
-    <!-- AppBar -->
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/bo_toolbar_generic" />
-
-    <!-- Product List -->
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvContainerNotifications"
+    <!-- Content -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginVertical="60dp">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <!-- AppBar -->
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/bo_toolbar_generic" />
+
+        <!-- Product List -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsvContainerNotifications"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_marginVertical="60dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProducts"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:nestedScrollingEnabled="false"
-                tools:itemCount="7"
-                tools:listitem="@layout/item_product" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false"
+                    tools:itemCount="7"
+                    tools:listitem="@layout/item_product" />
 
-    </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
 
-    <!-- Floating button add -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginHorizontal="@dimen/size_16dp"
-        android:layout_marginBottom="65dp"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/ic_add" />
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- Floating button add -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginHorizontal="@dimen/size_16dp"
+            android:layout_marginBottom="65dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_add" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Loader screen -->
+    <include
+        android:id="@+id/loader"
+        layout="@layout/bo_loader_generic" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
