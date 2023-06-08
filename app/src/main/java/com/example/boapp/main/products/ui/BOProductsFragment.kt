@@ -69,9 +69,14 @@ class BOProductsFragment : BOFragmentBase() {
             val productAdapter = ProductAdapter(productList)
             binding.rvProducts.adapter = productAdapter
             binding.rvProducts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            productAdapter.setOnItemClickListener(object : ClickListenerProduct {
+            productAdapter.setOnItemClickListenerDelete(object : ClickListenerProduct {
                 override fun onItemClick(item: ProductEntity) {
                     viewModelProduct.deleteProduct(item)
+                }
+            })
+            productAdapter.setOnItemClickListenerEdit(object : ClickListenerProduct {
+                override fun onItemClick(item: ProductEntity) {
+                    Toast(safeActivity).showToastInfo("Función no habilitada para editar el producto ${item.name}", safeActivity)
                 }
             })
         } else {
