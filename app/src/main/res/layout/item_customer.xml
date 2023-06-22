@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/size_8dp">
+
+        <TextView
+            android:id="@+id/tvLetter"
+            android:layout_width="@dimen/size_48dp"
+            android:layout_height="@dimen/size_48dp"
+            android:layout_marginHorizontal="@dimen/size_16dp"
+            android:background="@drawable/bg_shape_circle"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_24sp"
+            android:textStyle="bold"
+            tools:text="C" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/size_8dp"
+            android:layout_marginEnd="@dimen/size_16dp"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/gris_obscuro"
+                    android:textSize="@dimen/size_18sp"
+                    android:textStyle="bold"
+                    tools:text="Pepe Lozano"
+                    tools:textColor="@color/gris_obscuro" />
+
+                <TextView
+                    android:id="@+id/tvNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:textColor="@color/grafito"
+                    android:textSize="@dimen/size_14sp"
+                    tools:text="Sin descripción" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivGoDetail"
+                android:layout_width="@dimen/size_28dp"
+                android:layout_height="@dimen/size_28dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic__arrow_forward"
+                app:tint="@color/gris_obscuro" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/vLine"
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"
+        android:background="@color/gris_medio" />
+
+</LinearLayout>
