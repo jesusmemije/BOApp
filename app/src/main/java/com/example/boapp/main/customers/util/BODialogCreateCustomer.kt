@@ -62,6 +62,7 @@ class BODialogCreateCustomer() : DialogFragment() {
             binding.etName.setText("")
             binding.etNota.setText("")
             Toast(safeActivity).showToastSuccess("El cliente se ha registrado con éxito.", safeActivity)
+            dismiss()
         } else {
             Toast(safeActivity).showToastFailed("Error al registrar al cliente, intente nuevamente.", safeActivity)
         }

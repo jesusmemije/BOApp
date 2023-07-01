@@ -13,6 +13,9 @@ interface CustomerDao {
     @Query("SELECT * FROM customer_table ORDER BY id DESC")
     suspend fun getCustomers(): List<CustomerEntity>
 
+    @Query("SELECT * FROM customer_table WHERE id =:id")
+    fun getCustomerById(id: Int): CustomerEntity
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCustomer(customerEntity: CustomerEntity): Long
 
