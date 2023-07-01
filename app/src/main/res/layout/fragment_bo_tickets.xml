@@ -21,41 +21,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/size_32dp">
+            android:paddingHorizontal="@dimen/size_16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/size_24dp"
-                android:text="@string/new_product"
+                android:text="Selecciona un producto"
                 android:textColor="@color/grafito"
                 android:textSize="@dimen/size_16sp"
-                android:textStyle="bold" />
+                android:textStyle="italic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_16dp"
                 android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilProduct"
-                    style="@style/Theme_InputText"
+                <Spinner
+                    android:id="@+id/spinnerProducts"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/name">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etName"
-                        style="@style/Theme_InputText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapWords"
-                        android:paddingVertical="@dimen/size_10dp"
-                        android:textSize="@dimen/size_16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="@dimen/size_48dp" />
 
             </LinearLayout>
 
@@ -63,66 +48,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_16dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilPrice"
                     style="@style/Theme_InputText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/price">
+                    android:layout_marginEnd="@dimen/size_8dp"
+                    android:layout_weight="1"
+                    android:hint="Cantidad">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etPrice"
+                        android:id="@+id/etQuantity"
                         style="@style/Theme_InputText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="number"
-                        android:maxLength="3"
+                        android:maxLength="2"
                         android:paddingVertical="@dimen/size_10dp"
                         android:textSize="@dimen/size_16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_16dp"
-                android:orientation="vertical">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilDescription"
-                    style="@style/Theme_InputText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/description">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etDescription"
-                        style="@style/Theme_InputText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text|textMultiLine"
-                        android:lines="2"
-                        android:textSize="@dimen/size_16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_16dp"
-                android:orientation="vertical">
-
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_56dp"
+                    android:layout_height="@dimen/size_52dp"
+                    android:layout_weight="1"
                     android:text="@string/add" />
 
             </LinearLayout>

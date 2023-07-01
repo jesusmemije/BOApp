@@ -81,9 +81,7 @@ class BOCreateProductFragment : BOFragmentBase() {
 
     private fun handleInserted(): (Boolean) -> Unit = { response ->
         if (response) {
-            binding.etName.setText("")
-            binding.etPrice.setText("")
-            binding.etDescription.setText("")
+            findNavController().popBackStack()
             Toast(safeActivity).showToastSuccess("El producto se ha registrado con éxito.", safeActivity)
         } else {
             Toast(safeActivity).showToastFailed("Error al registrar producto, intente nuevamente.", safeActivity)
