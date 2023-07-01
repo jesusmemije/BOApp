@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.boapp.database.entities.CustomerEntity
 import com.example.boapp.database.entities.ProductEntity
 import com.example.boapp.database.entities.TicketEntity
@@ -20,8 +22,11 @@ import com.example.boapp.framework.base.BOFragmentBase
 import com.example.boapp.framework.extension.showToastFailed
 import com.example.boapp.framework.extension.showToastInfo
 import com.example.boapp.framework.extension.showToastSuccess
+import com.example.boapp.framework.interfaces.ClickListenerPosition
+import com.example.boapp.main.customers.adapter.CustomerAdapter
 import com.example.boapp.main.customers.viewmodel.BOViewModelCustomer
 import com.example.boapp.main.products.viewmodel.BOViewModelProduct
+import com.example.boapp.main.tickets.adapter.TicketProductAdapter
 import com.example.boapp.main.tickets.viewmodel.BOViewModelTicket
 
 class BOTicketsFragment : BOFragmentBase() {
@@ -70,6 +75,7 @@ class BOTicketsFragment : BOFragmentBase() {
             }
             viewModelCustomer.getCustomerById(customerId.toInt())
             viewModelProduct.getProducts()
+            viewModelTicket.getTickets()
             binding.btnAdd.setOnClickListener {
                 if (binding.etQuantity.text?.isNotEmpty() == true) {
                     val selectedProductList = productList?.filter { product -> product.name == binding.spinnerProducts.selectedItem.toString() }
@@ -96,6 +102,7 @@ class BOTicketsFragment : BOFragmentBase() {
         viewModelCustomer.customer.observe(viewLifecycleOwner, handleCustomer())
         viewModelProduct.productList.observe(viewLifecycleOwner, handleProductList())
         viewModelTicket.ticketInserted.observe(viewLifecycleOwner, handleTicketInserted())
+        viewModelTicket.ticketList.observe(viewLifecycleOwner, handleTicketList())
         viewModelCustomer.isLoading.observe(viewLifecycleOwner) { isVisible ->
             binding.loader.contentLoading.isVisible = isVisible
         }
@@ -134,6 +141,27 @@ class BOTicketsFragment : BOFragmentBase() {
             Toast(safeActivity).showToastSuccess("Se ha insertado el producto al cliente", safeActivity)
         } else {
             Toast(safeActivity).showToastFailed("No se puedo insertar el producto al cliente", safeActivity)
+        }
+    }
+
+    private fun handleTicketList(): (List<TicketEntity>?) -> Unit = { ticketList ->
+        if (ticketList?.isNotEmpty() == true) {
+            binding.llOrderResume.visibility = View.VISIBLE
+            val clickLess = object : ClickListenerPosition {
+                override fun onItemClick(position: Int) {
+
+                }
+            }
+            val clickMore = object : ClickListenerPosition {
+                override fun onItemClick(position: Int) {
+
+                }
+            }
+            val productAdapter = TicketProductAdapter(ticketList, clickLess, clickMore)
+            binding.rvTicketProducts.adapter = productAdapter
+            binding.rvTicketProducts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        } else {
+            binding.llOrderResume.visibility = View.GONE
         }
     }
 }

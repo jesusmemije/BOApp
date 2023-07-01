@@ -81,6 +81,35 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/llOrderResume"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_32dp"
+                    android:layout_marginBottom="@dimen/size_8dp"
+                    android:text="Resumen de pedido"
+                    android:textSize="@dimen/size_18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gris_medio" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTicketProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/item_ticket_product" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
