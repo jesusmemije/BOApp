@@ -15,7 +15,7 @@ import com.example.boapp.database.entities.TicketEntity
     ProductEntity::class,
     CustomerEntity::class,
     TicketEntity::class
-], version = 4)
+], version = 5)
 abstract class BOAppDatabase: RoomDatabase() {
     abstract fun productDao(): ProductDao
     abstract fun customerDao(): CustomerDao

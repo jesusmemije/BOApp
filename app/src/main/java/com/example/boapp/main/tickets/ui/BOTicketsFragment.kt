@@ -22,8 +22,8 @@ import com.example.boapp.framework.base.BOFragmentBase
 import com.example.boapp.framework.extension.showToastFailed
 import com.example.boapp.framework.extension.showToastInfo
 import com.example.boapp.framework.extension.showToastSuccess
+import com.example.boapp.framework.extension.toFormatCoinMXN
 import com.example.boapp.framework.interfaces.ClickListenerPosition
-import com.example.boapp.main.customers.adapter.CustomerAdapter
 import com.example.boapp.main.customers.viewmodel.BOViewModelCustomer
 import com.example.boapp.main.products.viewmodel.BOViewModelProduct
 import com.example.boapp.main.tickets.adapter.TicketProductAdapter
@@ -41,6 +41,7 @@ class BOTicketsFragment : BOFragmentBase() {
     private var customerId: String = "0"
     private var customer: CustomerEntity? = null
     private var productList: List<ProductEntity>? = null
+    private var ticketList: List<TicketEntity>? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -74,8 +75,7 @@ class BOTicketsFragment : BOFragmentBase() {
                 findNavController().popBackStack()
             }
             viewModelCustomer.getCustomerById(customerId.toInt())
-            viewModelProduct.getProducts()
-            viewModelTicket.getTickets()
+            viewModelTicket.getTickets(customerId.toInt())
             binding.btnAdd.setOnClickListener {
                 if (binding.etQuantity.text?.isNotEmpty() == true) {
                     val selectedProductList = productList?.filter { product -> product.name == binding.spinnerProducts.selectedItem.toString() }
@@ -101,8 +101,9 @@ class BOTicketsFragment : BOFragmentBase() {
     private fun initObserves() {
         viewModelCustomer.customer.observe(viewLifecycleOwner, handleCustomer())
         viewModelProduct.productList.observe(viewLifecycleOwner, handleProductList())
-        viewModelTicket.ticketInserted.observe(viewLifecycleOwner, handleTicketInserted())
         viewModelTicket.ticketList.observe(viewLifecycleOwner, handleTicketList())
+        viewModelTicket.ticketInserted.observe(viewLifecycleOwner, handleTicketInserted())
+        viewModelTicket.ticketUpdated.observe(viewLifecycleOwner, handleTicketUpdated())
         viewModelCustomer.isLoading.observe(viewLifecycleOwner) { isVisible ->
             binding.loader.contentLoading.isVisible = isVisible
         }
@@ -121,14 +122,27 @@ class BOTicketsFragment : BOFragmentBase() {
     private fun handleProductList(): (List<ProductEntity>?) -> Unit = { response ->
         productList = response
         if (productList?.isNotEmpty() == true) {
-            val products = mutableListOf<String>()
+
+            val productsNames = mutableListOf<String>()
             productList?.forEach { product ->
-                products.add(product.name)
+                productsNames.add(product.name)
             }
+
+            val ticketsNames = mutableListOf<String>()
+            ticketList?.forEach { ticket ->
+                ticketsNames.add(ticket.productName)
+            }
+
+            val availableProductList = productsNames.minus(ticketsNames.toSet())
+
+            if (availableProductList.isEmpty()) {
+                binding.llAddProduct.visibility = View.GONE
+            }
+
             binding.spinnerProducts.adapter = ArrayAdapter(
                 safeActivity,
                 R.layout.simple_spinner_dropdown_item,
-                products
+                availableProductList
             )
         } else {
             findNavController().popBackStack()
@@ -138,26 +152,51 @@ class BOTicketsFragment : BOFragmentBase() {
 
     private fun handleTicketInserted(): (Boolean) -> Unit = { response ->
         if (response) {
-            Toast(safeActivity).showToastSuccess("Se ha insertado el producto al cliente", safeActivity)
+            Toast(safeActivity).showToastSuccess("Producto cargado al cliente", safeActivity)
+            binding.etQuantity.setText("")
+            viewModelTicket.getTickets(customerId.toInt())
         } else {
-            Toast(safeActivity).showToastFailed("No se puedo insertar el producto al cliente", safeActivity)
+            Toast(safeActivity).showToastFailed("No se pudo cargar el producto al cliente", safeActivity)
         }
     }
 
-    private fun handleTicketList(): (List<TicketEntity>?) -> Unit = { ticketList ->
+    private fun handleTicketUpdated(): (Boolean) -> Unit = { response ->
+        if (response) {
+            viewModelTicket.getTickets(customerId.toInt())
+        } else {
+            Toast(safeActivity).showToastFailed("Ocurrió un error para editar cantidad", safeActivity)
+        }
+    }
+
+    private fun handleTicketList(): (List<TicketEntity>?) -> Unit = { response ->
+        ticketList = response
+        viewModelProduct.getProducts()
         if (ticketList?.isNotEmpty() == true) {
             binding.llOrderResume.visibility = View.VISIBLE
-            val clickLess = object : ClickListenerPosition {
-                override fun onItemClick(position: Int) {
+            var total = 0
+            ticketList?.forEach { ticket ->
+                val totalByProduct = ticket.productPrice * ticket.quantity
+                total += totalByProduct
+            }
+            binding.tvTotal.text = "Total: ${total.toFormatCoinMXN()}"
 
+            val clickQuantityLess = object : ClickListenerPosition {
+                override fun onItemClick(position: Int) {
+                    viewModelTicket.editProductQuantity(
+                        id = ticketList?.get(position)?.id ?: 0,
+                        quantity = ticketList?.get(position)?.quantity?.minus(1) ?: 0
+                    )
                 }
             }
-            val clickMore = object : ClickListenerPosition {
+            val clickQuantityMore = object : ClickListenerPosition {
                 override fun onItemClick(position: Int) {
-
+                    viewModelTicket.editProductQuantity(
+                        id = ticketList?.get(position)?.id ?: 0,
+                        quantity = ticketList?.get(position)?.quantity?.plus(1) ?: 0
+                    )
                 }
             }
-            val productAdapter = TicketProductAdapter(ticketList, clickLess, clickMore)
+            val productAdapter = TicketProductAdapter(ticketList ?: emptyList(), clickQuantityLess, clickQuantityMore)
             binding.rvTicketProducts.adapter = productAdapter
             binding.rvTicketProducts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         } else {

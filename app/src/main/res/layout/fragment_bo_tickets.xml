@@ -23,61 +23,69 @@
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/size_16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_24dp"
-                android:text="Selecciona un producto"
-                android:textColor="@color/grafito"
-                android:textSize="@dimen/size_16sp"
-                android:textStyle="italic" />
-
             <LinearLayout
+                android:id="@+id/llAddProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <Spinner
-                    android:id="@+id/spinnerProducts"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_48dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_24dp"
+                    android:text="Selecciona un producto"
+                    android:textColor="@color/grafito"
+                    android:textSize="@dimen/size_16sp"
+                    android:textStyle="italic" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_16dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Theme_InputText"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/size_8dp"
-                    android:layout_weight="1"
-                    android:hint="Cantidad">
+                    android:orientation="vertical">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etQuantity"
+                    <Spinner
+                        android:id="@+id/spinnerProducts"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_48dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_16dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <com.google.android.material.textfield.TextInputLayout
                         style="@style/Theme_InputText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:paddingVertical="@dimen/size_10dp"
-                        android:textSize="@dimen/size_16sp" />
+                        android:layout_marginEnd="@dimen/size_8dp"
+                        android:layout_weight="1"
+                        android:hint="Cantidad">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etQuantity"
+                            style="@style/Theme_InputText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:paddingVertical="@dimen/size_10dp"
+                            android:textSize="@dimen/size_16sp" />
 
-                <Button
-                    android:id="@+id/btnAdd"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_52dp"
-                    android:layout_weight="1"
-                    android:text="@string/add" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btnAdd"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_52dp"
+                        android:layout_weight="1"
+                        android:text="@string/add" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -87,14 +95,30 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_32dp"
                     android:layout_marginBottom="@dimen/size_8dp"
-                    android:text="Resumen de pedido"
-                    android:textSize="@dimen/size_18sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/resumen_de_pedido"
+                        android:textSize="@dimen/size_18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/size_18sp"
+                        android:textStyle="bold"
+                        tools:text="Total: $230" />
+
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -104,7 +128,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvTicketProducts"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/size_56dp"
+                    android:layout_height="wrap_content"
                     tools:itemCount="4"
                     tools:listitem="@layout/item_ticket_product" />
 

@@ -12,5 +12,5 @@ data class TicketEntity(
     @ColumnInfo(name = "productId") val productId: Int,
     @ColumnInfo(name = "productName") val productName: String,
     @ColumnInfo(name = "productPrice") val productPrice: Int,
-    @ColumnInfo(name = "quantity") val quantity: Int
+    @ColumnInfo(name = "quantity") var quantity: Int
 )

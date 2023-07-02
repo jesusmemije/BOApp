@@ -43,7 +43,7 @@ class BOViewModelCustomer : BOViewModelBase() {
             Handler(Looper.getMainLooper()).postDelayed({
                 customerMLD.postValue(customer)
                 isLoading.postValue(false)
-            }, 500)
+            }, 1000)
         }
     }
 

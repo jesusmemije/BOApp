@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boapp.database.entities.TicketEntity
 import com.example.boapp.databinding.ItemTicketProductBinding
+import com.example.boapp.framework.extension.toFormatCoinMXN
 import com.example.boapp.framework.interfaces.ClickListenerPosition
 
 class TicketProductAdapter(
@@ -31,12 +32,14 @@ class TicketProductAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TicketEntity, position: Int) {
             binding.apply {
-                tvProductName.text = item.productName
+                tvProductName.text = "${item.productName} | ${item.productPrice.toFormatCoinMXN()} c/u"
                 tvQuantity.text = item.quantity.toString()
                 ivButtonLess.setOnClickListener {
+                    tvQuantity.text = (item.quantity-1).toString()
                     clickListenerLess?.onItemClick(position)
                 }
                 ivButtonMore.setOnClickListener {
+                    tvQuantity.text = (item.quantity+1).toString()
                     clickListenerMore?.onItemClick(position)
                 }
             }

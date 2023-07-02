@@ -22,13 +22,15 @@ class BOViewModelTicket : BOViewModelBase() {
     val ticketInserted: LiveData<Boolean>
         get() = ticketInsertedMLD
 
-    fun getTickets() {
+    private var ticketUpdatedMLD = SingleLiveEvent<Boolean>()
+    val ticketUpdated: LiveData<Boolean>
+        get() = ticketUpdatedMLD
+
+    fun getTickets(customerId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            isLoading.postValue(true)
-            val customers = BOConstant.APP_DATABASE?.ticketDao()?.getTickets()
+            val customers = BOConstant.APP_DATABASE?.ticketDao()?.getTickets(customerId)
             Handler(Looper.getMainLooper()).postDelayed({
                 ticketListMLD.postValue(customers)
-                isLoading.postValue(false)
             }, 500)
         }
     }
@@ -45,6 +47,18 @@ class BOViewModelTicket : BOViewModelBase() {
                 }
                 isLoading.postValue(false)
             }, 500)
+        }
+    }
+
+    fun editProductQuantity(id: Int, quantity: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            isLoading.postValue(true)
+            val updatedID = BOConstant.APP_DATABASE?.ticketDao()?.editProductQuantity(id, quantity)
+            if (updatedID != null && updatedID > 0) {
+                ticketUpdatedMLD.postValue(true)
+            } else {
+                ticketUpdatedMLD.postValue(false)
+            }
         }
     }
 }
