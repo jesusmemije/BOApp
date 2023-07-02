@@ -6,19 +6,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boapp.R
 import com.example.boapp.database.entities.ProductEntity
 import com.example.boapp.databinding.FragmentBoProductsBinding
 import com.example.boapp.framework.base.BOFragmentBase
-import com.example.boapp.framework.interfaces.ClickListenerProduct
-import com.example.boapp.framework.extension.log
 import com.example.boapp.framework.extension.showToastInfo
+import com.example.boapp.framework.extension.showToastSuccess
+import com.example.boapp.framework.interfaces.ClickListenerProduct
 import com.example.boapp.main.products.adapter.ProductAdapter
 import com.example.boapp.main.products.viewmodel.BOViewModelProduct
 
@@ -57,7 +57,11 @@ class BOProductsFragment : BOFragmentBase() {
     }
 
     private fun initObserves() {
-        viewModelProduct.productModel.observe(viewLifecycleOwner, handleProducts())
+        viewModelProduct.productList.observe(viewLifecycleOwner, handleProducts())
+        viewModelProduct.productDeleted.observe(viewLifecycleOwner, handleDeleted())
+        viewModelProduct.isLoading.observe(viewLifecycleOwner) { isVisible ->
+            binding.loader.contentLoading.isVisible = isVisible
+        }
     }
 
     private fun handleProducts(): (List<ProductEntity>?) -> Unit = { productList ->
@@ -65,14 +69,28 @@ class BOProductsFragment : BOFragmentBase() {
             val productAdapter = ProductAdapter(productList)
             binding.rvProducts.adapter = productAdapter
             binding.rvProducts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            productAdapter.setOnItemClickListener(object : ClickListenerProduct {
+            productAdapter.setOnItemClickListenerDelete(object : ClickListenerProduct {
                 override fun onItemClick(item: ProductEntity) {
                     viewModelProduct.deleteProduct(item)
-                    viewModelProduct.getProducts()
+                }
+            })
+            productAdapter.setOnItemClickListenerEdit(object : ClickListenerProduct {
+                override fun onItemClick(item: ProductEntity) {
+                    Toast(safeActivity).showToastInfo("Función no habilitada para editar el producto ${item.name}", safeActivity)
                 }
             })
         } else {
-            Toast(safeActivity).showToastInfo("No se encontraron productos registrados", safeActivity)
+            binding.rvProducts.adapter = ProductAdapter(emptyList())
+            Toast(safeActivity).showToastInfo("No se encontraron productos registrados.", safeActivity)
+        }
+    }
+
+    private fun handleDeleted(): (Boolean) -> Unit = { response ->
+        if (response) {
+            Toast(safeActivity).showToastSuccess("El producto se ha eliminado con éxito.", safeActivity)
+            viewModelProduct.getProducts()
+        } else {
+            Toast(safeActivity).showToastSuccess("Hubo un error al eliminar el producto.", safeActivity)
         }
     }
 

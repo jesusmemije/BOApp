@@ -8,4 +8,8 @@
     <string name="description">Descripción (opcional)</string>
     <string name="todo">todo</string>
     <string name="format_coin">$%,.0f</string>
+    <string name="ticket">Ticket</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="resumen_de_pedido">Resumen de pedido</string>
 </resources>

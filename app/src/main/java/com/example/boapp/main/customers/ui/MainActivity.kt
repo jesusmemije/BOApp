@@ -1,4 +1,4 @@
-package com.example.boapp.main.home
+package com.example.boapp.main.customers.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_products, R.id.navigation_customers
+                R.id.navigation_customers, R.id.navigation_products
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

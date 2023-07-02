@@ -3,13 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_customers">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.boapp.main.home.BOHomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_bo_home" />
+        android:id="@+id/navigation_customers"
+        android:name="com.example.boapp.main.customers.ui.BOCustomersFragment"
+        android:label="@string/title_customers"
+        tools:layout="@layout/fragment_bo_customers" >
+        <action
+            android:id="@+id/action_navigation_customers_self"
+            app:destination="@id/navigation_customers" />
+        <action
+            android:id="@+id/action_navigation_customers_to_BOTicketsFragment"
+            app:destination="@id/BOTicketsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_products"
@@ -22,13 +29,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_customers"
-        android:name="com.example.boapp.main.customers.BOCustomersFragment"
-        android:label="@string/title_customers"
-        tools:layout="@layout/fragment_bo_customers" />
-    <fragment
         android:id="@+id/BOCreateProductFragment"
         android:name="com.example.boapp.main.products.ui.BOCreateProductFragment"
         android:label="fragment_bo_create_product"
         tools:layout="@layout/fragment_bo_create_product" />
+    <fragment
+        android:id="@+id/BOTicketsFragment"
+        android:name="com.example.boapp.main.tickets.ui.BOTicketsFragment"
+        android:label="fragment_bo_tickets"
+        tools:layout="@layout/fragment_bo_tickets" />
 </navigation>
