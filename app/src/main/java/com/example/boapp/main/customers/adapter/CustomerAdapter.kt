@@ -9,7 +9,8 @@ import com.example.boapp.framework.interfaces.ClickListenerPosition
 
 class CustomerAdapter(
     private val customerList: List<CustomerEntity>,
-    private var clickListener: ClickListenerPosition? = null
+    private var clickListenerGoDetail: ClickListenerPosition? = null,
+    private var clickListenerDelete: ClickListenerPosition? = null
 ) : RecyclerView.Adapter<CustomerAdapter.CustomerAdapterHolder>() {
 
     override fun onCreateViewHolder(
@@ -34,7 +35,10 @@ class CustomerAdapter(
                 tvName.text = item.name
                 tvNote.text = item.note.ifEmpty { "Sin notas" }
                 llCustomerItem.setOnClickListener {
-                    clickListener?.onItemClick(position)
+                    clickListenerGoDetail?.onItemClick(position)
+                }
+                ivDelete.setOnClickListener {
+                    clickListenerDelete?.onItemClick(position)
                 }
             }
         }

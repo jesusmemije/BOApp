@@ -15,7 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="@dimen/size_16sp"
+            android:textSize="@dimen/size_15sp"
             android:textStyle="bold"
             tools:text="Coca-cola 600ml" />
 
@@ -29,12 +29,12 @@
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.1"
-                android:gravity="start">
+                android:gravity="center_vertical|center_horizontal">
 
                 <ImageView
                     android:id="@+id/ivButtonLess"
-                    android:layout_width="36dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/size_28dp"
+                    android:layout_height="@dimen/size_28dp"
                     android:background="@drawable/ic_remove_circle"
                     android:contentDescription="@string/todo" />
 
@@ -42,7 +42,7 @@
 
             <RelativeLayout
                 android:layout_width="0dip"
-                android:layout_height="@dimen/size_32dp"
+                android:layout_height="@dimen/size_28dp"
                 android:layout_marginHorizontal="@dimen/size_4dp"
                 android:layout_weight="0.2"
                 android:background="@drawable/rounded_edittext"
@@ -53,10 +53,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="1"
                     android:textColor="@color/gris_obscuro"
                     android:textSize="@dimen/size_18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="1" />
 
             </RelativeLayout>
 
@@ -64,12 +64,12 @@
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.1"
-                android:gravity="end">
+                android:gravity="center_vertical|center_horizontal">
 
                 <ImageView
                     android:id="@+id/ivButtonMore"
-                    android:layout_width="@dimen/size_38dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/size_28dp"
+                    android:layout_height="@dimen/size_28dp"
                     android:background="@drawable/ic_add_circle"
                     android:contentDescription="@string/todo" />
 

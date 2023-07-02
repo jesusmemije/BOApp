@@ -17,4 +17,7 @@ interface TicketDao {
 
     @Query("UPDATE ticket_table SET quantity = :quantity WHERE id = :id")
     suspend fun editProductQuantity(id: Int, quantity: Int): Int
+
+    @Query("DELETE FROM ticket_table WHERE customerId = :customerId")
+    suspend fun deleteTicketForCustomer(customerId: Int): Int
 }

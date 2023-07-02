@@ -25,6 +25,10 @@ class BOViewModelCustomer : BOViewModelBase() {
     val customerInserted: LiveData<Boolean>
         get() = customerInsertedMLD
 
+    private var customerRemovedMLD = SingleLiveEvent<Boolean>()
+    val customerRemoved: LiveData<Boolean>
+        get() = customerRemovedMLD
+
     fun getCustomers() {
         viewModelScope.launch(Dispatchers.IO) {
             isLoading.postValue(true)
@@ -59,6 +63,15 @@ class BOViewModelCustomer : BOViewModelBase() {
                 }
                 isLoading.postValue(false)
             }, 500)
+        }
+    }
+
+    fun deleteCustomer(customerEntity: CustomerEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val customerDeleted = BOConstant.APP_DATABASE?.customerDao()?.deleteCustomer(customerEntity)
+            if (customerDeleted != null && customerDeleted > 0) {
+                customerRemovedMLD.postValue(true)
+            }
         }
     }
 }

@@ -107,14 +107,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/resumen_de_pedido"
-                        android:textSize="@dimen/size_18sp"
+                        android:textSize="@dimen/size_16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/size_18sp"
+                        android:textSize="@dimen/size_16sp"
                         android:textStyle="bold"
                         tools:text="Total: $230" />
 
@@ -128,8 +128,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvTicketProducts"
                     android:layout_width="match_parent"
-                    android:layout_marginBottom="@dimen/size_56dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/size_56dp"
                     tools:itemCount="4"
                     tools:listitem="@layout/item_ticket_product" />
 

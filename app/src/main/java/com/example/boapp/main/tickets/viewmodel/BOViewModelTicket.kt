@@ -61,4 +61,10 @@ class BOViewModelTicket : BOViewModelBase() {
             }
         }
     }
+
+    fun deleteTicketForCustomer(customerId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            BOConstant.APP_DATABASE?.ticketDao()?.deleteTicketForCustomer(customerId)
+        }
+    }
 }

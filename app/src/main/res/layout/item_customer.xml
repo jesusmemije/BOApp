@@ -65,11 +65,11 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/ivGoDetail"
+                android:id="@+id/ivDelete"
                 android:layout_width="@dimen/size_28dp"
                 android:layout_height="@dimen/size_28dp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic__arrow_forward"
+                android:src="@drawable/ic_delete"
                 app:tint="@color/gris_obscuro" />
 
         </LinearLayout>

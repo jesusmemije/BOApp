@@ -20,5 +20,5 @@ interface CustomerDao {
     suspend fun insertCustomer(customerEntity: CustomerEntity): Long
 
     @Delete
-    suspend fun deleteCustomer(customerEntity: CustomerEntity)
+    suspend fun deleteCustomer(customerEntity: CustomerEntity): Int
 }
