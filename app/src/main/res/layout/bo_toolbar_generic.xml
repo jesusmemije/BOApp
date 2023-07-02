@@ -31,4 +31,15 @@
         android:textStyle="bold"
         tools:text="Pantalla" />
 
+    <ImageView
+        android:id="@+id/ivAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/size_16dp"
+        android:contentDescription="@string/todo"
+        android:gravity="center_vertical"
+        android:src="@drawable/ic_add"
+        android:textColor="@color/gris_obscuro" />
+
 </androidx.appcompat.widget.Toolbar>

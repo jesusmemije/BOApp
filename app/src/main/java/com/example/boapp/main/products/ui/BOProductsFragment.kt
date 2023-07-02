@@ -51,7 +51,7 @@ class BOProductsFragment : BOFragmentBase() {
 
     private fun initListener() {
         viewModelProduct.getProducts()
-        binding.fabAdd.setOnClickListener {
+        binding.toolbar.ivAdd.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_products_to_BOCreateProductFragment)
         }
     }

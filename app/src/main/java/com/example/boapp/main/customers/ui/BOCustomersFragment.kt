@@ -54,7 +54,7 @@ class BOCustomersFragment : BOFragmentBase() {
             findNavController().navigate(R.id.action_navigation_customers_self)
         }
         viewModelCustomer.getCustomers()
-        binding.fabAdd.setOnClickListener {
+        binding.toolbar.ivAdd.setOnClickListener {
             val dialog = BODialogCreateCustomer()
             dialog.show(childFragmentManager, "DialogCreateCustomer")
         }
