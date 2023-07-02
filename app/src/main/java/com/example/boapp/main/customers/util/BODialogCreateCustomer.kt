@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.example.boapp.database.entities.CustomerEntity
 import com.example.boapp.databinding.DialogRegisterCustomerBinding
 import com.example.boapp.framework.extension.showToastFailed
+import com.example.boapp.framework.extension.showToastInfo
 import com.example.boapp.framework.extension.showToastSuccess
 import com.example.boapp.framework.interfaces.OnListenerAddCustomer
 import com.example.boapp.main.customers.viewmodel.BOViewModelCustomer
@@ -47,12 +48,16 @@ class BODialogCreateCustomer(
 
     private fun initListener() {
         binding.btnSaved.setOnClickListener {
-            viewModelCustomer.insertCustomer(
-                CustomerEntity(
-                    name = binding.etName.text.toString(),
-                    note = binding.etNota.text.toString()
+            if (binding.etName.text.toString().isNotEmpty()) {
+                viewModelCustomer.insertCustomer(
+                    CustomerEntity(
+                        name = binding.etName.text.toString(),
+                        note = binding.etNota.text.toString()
+                    )
                 )
-            )
+            } else {
+                Toast(safeActivity).showToastInfo("El campo nombre no debe estar vacío.", safeActivity)
+            }
         }
     }
 
