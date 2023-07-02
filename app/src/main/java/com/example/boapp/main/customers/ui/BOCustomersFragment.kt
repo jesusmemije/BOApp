@@ -18,6 +18,7 @@ import com.example.boapp.databinding.FragmentBoCustomersBinding
 import com.example.boapp.framework.base.BOFragmentBase
 import com.example.boapp.framework.extension.showToastInfo
 import com.example.boapp.framework.interfaces.ClickListenerPosition
+import com.example.boapp.framework.interfaces.OnListenerAddCustomer
 import com.example.boapp.main.customers.adapter.CustomerAdapter
 import com.example.boapp.main.customers.util.BODialogCreateCustomer
 import com.example.boapp.main.customers.viewmodel.BOViewModelCustomer
@@ -55,7 +56,11 @@ class BOCustomersFragment : BOFragmentBase() {
         }
         viewModelCustomer.getCustomers()
         binding.toolbar.ivAdd.setOnClickListener {
-            val dialog = BODialogCreateCustomer()
+            val dialog = BODialogCreateCustomer(object : OnListenerAddCustomer {
+                override fun onItemAdded(ok: Boolean) {
+                    viewModelCustomer.getCustomers()
+                }
+            })
             dialog.show(childFragmentManager, "DialogCreateCustomer")
         }
     }
@@ -74,14 +79,19 @@ class BOCustomersFragment : BOFragmentBase() {
                     val mBundle = Bundle()
 
                     mBundle.putString("customerId", customerList[position].id.toString())
-                    findNavController().navigate(R.id.action_navigation_customers_to_BOTicketsFragment, mBundle)
+                    findNavController().navigate(
+                        R.id.action_navigation_customers_to_BOTicketsFragment, mBundle
+                    )
                 }
             })
             binding.rvCustomers.adapter = productAdapter
-            binding.rvCustomers.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            binding.rvCustomers.layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         } else {
             binding.rvCustomers.adapter = CustomerAdapter(emptyList())
-            Toast(safeActivity).showToastInfo("No se encontraron productos registrados.", safeActivity)
+            Toast(safeActivity).showToastInfo(
+                "No se encontraron productos registrados.", safeActivity
+            )
         }
     }
 }

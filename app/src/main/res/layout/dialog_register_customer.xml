@@ -17,20 +17,22 @@
 
     <EditText
         android:id="@+id/etName"
-        android:layout_width="300dp"
+        android:layout_width="260dp"
         android:layout_height="@dimen/size_48dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="4dp"
         android:hint="Nombre"
+        android:inputType="textCapWords"
         android:paddingHorizontal="@dimen/size_16dp" />
 
     <EditText
         android:id="@+id/etNota"
-        android:layout_width="300dp"
+        android:layout_width="260dp"
         android:layout_height="@dimen/size_48dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
         android:hint="Nota (opcional)"
+        android:inputType="textCapWords"
         android:paddingHorizontal="@dimen/size_16dp" />
 
     <Button

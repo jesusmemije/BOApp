@@ -9,3 +9,7 @@ interface ClickListenerProduct {
 interface ClickListenerPosition {
     fun onItemClick(position: Int)
 }
+
+interface OnListenerAddCustomer {
+    fun onItemAdded(ok: Boolean)
+}
