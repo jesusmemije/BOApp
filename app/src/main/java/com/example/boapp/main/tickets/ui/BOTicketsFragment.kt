@@ -52,6 +52,7 @@ class BOTicketsFragment : BOFragmentBase() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentBoTicketsBinding.inflate(inflater, container, false)
+        binding.toolbar.ivAdd.visibility = View.GONE
         return binding.root
     }
 

@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_navigation_products_to_BOCreateProductFragment"
             app:destination="@id/BOCreateProductFragment" />
+        <action
+            android:id="@+id/action_navigation_products_self"
+            app:destination="@id/navigation_products" />
     </fragment>
 
     <fragment

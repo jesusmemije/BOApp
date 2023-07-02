@@ -3,7 +3,6 @@ package com.example.boapp.main.customers.ui
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +26,6 @@ import com.example.boapp.main.customers.adapter.CustomerAdapter
 import com.example.boapp.main.customers.util.BODialogCreateCustomer
 import com.example.boapp.main.customers.viewmodel.BOViewModelCustomer
 import com.example.boapp.main.tickets.viewmodel.BOViewModelTicket
-
 
 class BOCustomersFragment : BOFragmentBase() {
 

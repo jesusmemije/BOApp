@@ -37,6 +37,7 @@ class BOCreateProductFragment : BOFragmentBase() {
     ): View {
         binding = FragmentBoCreateProductBinding.inflate(inflater, container, false)
         binding.toolbar.tvTitle.text = resources.getString(R.string.add_product)
+        binding.toolbar.ivAdd.visibility = View.GONE
         return binding.root
     }
 

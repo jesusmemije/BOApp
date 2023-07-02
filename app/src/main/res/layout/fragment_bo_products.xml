@@ -18,13 +18,20 @@
             android:id="@+id/toolbar"
             layout="@layout/bo_toolbar_generic" />
 
-        <!-- Product List -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvProducts"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:itemCount="7"
-            tools:listitem="@layout/item_product" />
+            android:layout_height="match_parent">
+
+            <!-- Product List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProducts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:itemCount="7"
+                tools:listitem="@layout/item_product" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 
