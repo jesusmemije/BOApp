@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BOApp</string>
+    <string name="app_name">Tickets</string>
     <string name="title_home">Home</string>
     <string name="title_products">Productos</string>
     <string name="title_customers">Clientes</string>
