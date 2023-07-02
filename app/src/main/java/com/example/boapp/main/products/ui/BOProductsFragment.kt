@@ -1,6 +1,7 @@
 package com.example.boapp.main.products.ui
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -71,7 +72,13 @@ class BOProductsFragment : BOFragmentBase() {
             binding.rvProducts.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             productAdapter.setOnItemClickListenerDelete(object : ClickListenerProduct {
                 override fun onItemClick(item: ProductEntity) {
-                    viewModelProduct.deleteProduct(item)
+                    val dialog: AlertDialog = AlertDialog.Builder(safeActivity)
+                        .setPositiveButton("Sí, eliminar") { _, _ ->
+                            viewModelProduct.deleteProduct(item)
+                        }.setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+                        .setTitle("Confirmar")
+                        .setMessage("¿Realmente deseas eliminar este producto?").create()
+                    dialog.show()
                 }
             })
             productAdapter.setOnItemClickListenerEdit(object : ClickListenerProduct {

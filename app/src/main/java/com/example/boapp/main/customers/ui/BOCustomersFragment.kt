@@ -1,7 +1,9 @@
 package com.example.boapp.main.customers.ui
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +27,7 @@ import com.example.boapp.main.customers.adapter.CustomerAdapter
 import com.example.boapp.main.customers.util.BODialogCreateCustomer
 import com.example.boapp.main.customers.viewmodel.BOViewModelCustomer
 import com.example.boapp.main.tickets.viewmodel.BOViewModelTicket
+
 
 class BOCustomersFragment : BOFragmentBase() {
 
@@ -90,8 +93,14 @@ class BOCustomersFragment : BOFragmentBase() {
             }
             val clickListenerDelete = object : ClickListenerPosition {
                 override fun onItemClick(position: Int) {
-                    customerId = customerList[position].id
-                    viewModelCustomer.deleteCustomer(customerList[position])
+                    val dialog: AlertDialog = AlertDialog.Builder(safeActivity)
+                        .setPositiveButton("Sí, eliminar") { _, _ ->
+                            customerId = customerList[position].id
+                            viewModelCustomer.deleteCustomer(customerList[position])
+                        }.setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+                        .setTitle("Confirmar")
+                        .setMessage("¿Realmente deseas eliminar al cliente y toda su información registrada?").create()
+                    dialog.show()
                 }
             }
             val productAdapter = CustomerAdapter(customerList, clickListenerGoDetail, clickListenerDelete)
